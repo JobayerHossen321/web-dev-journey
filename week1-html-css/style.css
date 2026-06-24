@@ -28,9 +28,9 @@ main {
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
-}                        /* ✅ main closes here */
+}                       
 
-table {                  /* ✅ now at top level */
+table {
     margin: 0 auto;
     border-collapse: collapse;
     width: 60%;
@@ -47,3 +47,9 @@ th {
     color: white;
 }
 
+ul, ol {
+    display: inline-block;  /* allows margin: auto to work */
+    text-align: left;       /* keeps list text left-aligned */
+    margin: 0 auto;         /* centers the block itself */
+    padding-left: 20px;     /* keeps bullet indentation */
+}
