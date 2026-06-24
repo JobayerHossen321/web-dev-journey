@@ -27,8 +27,7 @@ main {
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
-}
-table {
+    table {
     margin: 0 auto;
     border-collapse: collapse;
     width: 60%;
@@ -44,3 +43,5 @@ th {
     background-color: #2980b9;
     color: white;
 }
+}
+
