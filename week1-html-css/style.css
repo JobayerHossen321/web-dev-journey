@@ -100,7 +100,6 @@ nav a:hover {
     }
 
     nav {
-        flex-direction: column;
         gap: 10px;
         flex-direction: row;
         flex-wrap: wrap;
