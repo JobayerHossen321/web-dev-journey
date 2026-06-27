@@ -28,7 +28,12 @@ main {
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
-}                       
+    transition: box-shadow 0.3s ease;
+}
+
+main:hover {
+    box-shadow: 0 4px rgba(0, 0, 0, 0.15);
+}
 
 table {
     margin: 0 auto;
@@ -59,6 +64,7 @@ nav a {
     color: #2980b9;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0; 3s ease;
 }
 nav {
     display: flex;
@@ -72,6 +78,24 @@ img {
     border-radius: 8px;
     margin: 10px auto;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+button {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+buuton:hover {
+    background-color: #1a6a9a;
 }
 
 .intro {
