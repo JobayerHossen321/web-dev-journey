@@ -84,3 +84,35 @@ img {
 nav a:hover {
     color: #e74c3c;
 }
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    img {
+        width: 150px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    main {
+        paddinf: 10px;
+    }
+}
