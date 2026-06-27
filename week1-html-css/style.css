@@ -89,10 +89,6 @@ nav a:hover {
     body {
         font-size: 14px;
         padding: 10px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
     }
     
     h1 {
@@ -105,6 +101,10 @@ nav a:hover {
 
     nav {
         flex-direction: column;
+        gap: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 10px;
     }
 
