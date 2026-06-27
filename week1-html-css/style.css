@@ -75,6 +75,8 @@ img {
 }
 
 .intro {
-    color: blue;
-    font-weight: bold;
+    font-size: 18px;
+    color: #555555;
+    max-width: 600px;
+    margin: 0 auto;
 }
