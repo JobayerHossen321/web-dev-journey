@@ -1,5 +1,3 @@
-document.title = "Jobayer | Full Stack Developer";
-
 // My personal info
 const myName = "Jobayer Hossen";
 const myJob = "Compliance Auditor";
@@ -23,3 +21,4 @@ console.log(`I study ${weeklyHours} hours per week`);
 currentSkills = "HTML, CSS and Javascript";
 console.log("Updated skills: " + currentSkills);
 
+document.title = "Jobayer | Full Stack Developer";
