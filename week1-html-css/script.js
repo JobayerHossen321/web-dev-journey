@@ -1,4 +1,4 @@
-//my personal info
+// My personal info
 const myName = "Jobayer Hossen";
 const myJob = "Compliance Auditor";
 const myGoal = "Full Stack Developer";
@@ -7,7 +7,7 @@ let currentSkills = "HTML and CSS";
 
 // Log them to console
 console.log("Name: " + myName);
-console.log("Current Job: " + myJob)
+console.log("Current Job: " + myJob);
 console.log(`My goal is to become a ${myGoal} by ${learningYear}`);
 console.log("Skills so far: " + currentSkills);
 
