@@ -15,7 +15,7 @@ console.log("Skills so far: " + currentSkills);
 let hoursPerDay = 4;
 let daysPerWeek = 5;
 let weeklyHours = hoursPerDay * daysPerWeek;
-console.log(' I study ${weeklyHours} hours per week';
+console.log(' I study ${weeklyHours} hours per week');
 
 // Update a let variable
 currentSkills = "HTML, CSS and Javascript";
