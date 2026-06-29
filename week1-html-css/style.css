@@ -64,7 +64,7 @@ nav a {
     color: #2980b9;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0; 3s ease;
+    transition: color 0.3s ease;
 }
 nav {
     display: flex;
@@ -140,6 +140,6 @@ nav a:hover {
     }
 
     main {
-        paddinf: 10px;
+        padding: 10px;
     }
 }
