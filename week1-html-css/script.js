@@ -1,1 +1,5 @@
-console.log("Hello, Jobayer. I am now learning JavaScript.");
+const name = "Jobayer";
+let age = 35;
+let daysLearning = 09;
+
+console.log(`My name is ${name}, I am ${age} years old, and I've been learning for ${daysLearning} days.`);
