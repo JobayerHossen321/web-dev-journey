@@ -4,12 +4,12 @@ let daysLearning = 8;
 
 console.log(`My name is ${name}, I am ${age} years old, and I've been learning for ${daysLearning} days.`);
 
-let dayslearning = 9;
+daysLearning = 9;
 
-if (dayslearning < 7) {
-  console.log(`Day ${dayslearning}: Just getting started`);
-} else if (dayslearning >= 7 && dayslearning <=30) {
-  console.log(`Day ${dayslearning}: Building momentum`);
+if (daysLearning < 7) {
+  console.log(`Day ${daysLearning}: Just getting started`);
+} else if (daysLearning >= 7 && daysLearning <=30) {
+  console.log(`Day ${daysLearning}: Building momentum`);
 } else {
-  console.log(`Day ${dayslearning}: Solid Progress`);
+  console.log(`Day ${daysLearning}: Solid Progress`);
 }  
