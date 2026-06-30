@@ -11,5 +11,5 @@ if (dayslearning < 7) {
 } else if (dayslearning >= 7 && dayslearning <=30) {
   console.log(`Day ${dayslearning}: Building momentum`);
 } else {
-  console.log(`Day ${dayslearning}:Solid Progress`);
+  console.log(`Day ${dayslearning}: Solid Progress`);
 }  
