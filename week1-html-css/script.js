@@ -1,5 +1,5 @@
 const name = "Jobayer";
 let age = 35;
-let daysLearning = 09;
+let daysLearning = 08;
 
 console.log(`My name is ${name}, I am ${age} years old, and I've been learning for ${daysLearning} days.`);
