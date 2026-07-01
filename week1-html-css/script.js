@@ -20,7 +20,7 @@ for (let i = 0; i < skills.lenth; i++) {
   console.log((i +1) + ": " + skills[i]);
 }
 
-skills.push("React");
+skill.push("React");
 
 for (let skill of skills) {
   if (skill.length > 4) {
