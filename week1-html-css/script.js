@@ -28,5 +28,18 @@ for (let i = 0; i < skills.length; i++) {   //Loop to print only skills with mor
   }
 }
 
+function double(num) {
+  return num * 2;
+}
+console.log(double(5));
+console.log(double(100));
+console.log(double(1.5));
 
+function printLongWords(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > 4) {
+      console.log(arr[i]);
+    }
+  } 
+}     
 
