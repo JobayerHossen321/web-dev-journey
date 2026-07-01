@@ -44,3 +44,28 @@ function printLongWords(arr) {
 }     
 
 printLongWords(skills);
+
+function getLongWords (words) {
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 4) {
+      longWords.push(words[i]);
+    }  
+  }
+  return longWords;
+}
+let result = getLongWords(skills);
+console.log(result);
+
+function sumArray(numbers) {
+  let total = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    total += numbers[i];
+  }
+  return total;
+}
+
+
+let myNumbers = [10, 25, 3, 7, 15];
+let totalSum = sumArray(myNumbers);
+console.log(totalSum);
+  
