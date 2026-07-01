@@ -16,7 +16,7 @@ if (daysLearning < 7) {
 
 let skills = ["HTML", "CSS", "JavaScript", "Python", "Git"];
 
-for (let i = 0; i < skills.lenth; i++) {
+for (let i = 0; i < skills.length; i++) {
   console.log((i +1) + ": " + skills[i]);
 }
 
