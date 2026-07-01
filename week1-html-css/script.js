@@ -14,16 +14,19 @@ if (daysLearning < 7) {
   console.log(`Day ${daysLearning}: Solid Progress`);
 }  
 
-let skills = ["HTML", "CSS", "JavaScript", "Python", "Git"];
+let skills = ["HTML", "CSS", "JavaScript", "Python", "Git"];   //Creating the array
 
-for (let i = 0; i < skills.length; i++) {
-  console.log((i +1) + ": " + skills[i]);
+for (let i = 0; i < skills.length; i++) {    //Loop to print each skill with its position
+  console.log(`${i+1}: ${skills[i]}`);
 }
 
-skills.push("React");
+skills.push("React");  //Add "React" to the array
 
-for (let skill of skills) {
-  if (skill.length > 4) {
-    console.log(skill);
+for (let i = 0; i < skilld.length; i++) {   //Loop to print only skills with more than 4 characters
+  if (skills[i].length >4) {
+    console.log(skills[i]);
   }
 }
+
+
+
