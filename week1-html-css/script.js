@@ -13,3 +13,17 @@ if (daysLearning < 7) {
 } else {
   console.log(`Day ${daysLearning}: Solid Progress`);
 }  
+
+let skill = ["HTML", "CSS", "JavaScript", "Python", "Git"];
+
+for (let i = 0; i < skills.lenth; i++) {
+  console.log((i +1) + ": " + skills[i]);
+}
+
+skills.push("React");
+
+for (let skill of skills) {
+  if (skill.length > 4) {
+    console.log(skill);
+  }
+}
