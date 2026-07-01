@@ -43,3 +43,4 @@ function printLongWords(arr) {
   } 
 }     
 
+printLongWords(skills);
