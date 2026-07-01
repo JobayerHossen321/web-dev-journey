@@ -22,7 +22,7 @@ for (let i = 0; i < skills.length; i++) {    //Loop to print each skill with its
 
 skills.push("React");  //Add "React" to the array
 
-for (let i = 0; i < skilld.length; i++) {   //Loop to print only skills with more than 4 characters
+for (let i = 0; i < skills.length; i++) {   //Loop to print only skills with more than 4 characters
   if (skills[i].length >4) {
     console.log(skills[i]);
   }
