@@ -22,19 +22,7 @@ for (let i = 0; i < skills.length; i++) {    //Loop to print each skill with its
 
 skills.push("React");  //Add "React" to the array
 
-for (let i = 0; i < skills.length; i++) {   //Loop to print only skills with more than 4 characters
-  if (skills[i].length >4) {
-    console.log(skills[i]);
-  }
-}
-
-function double(num) {
-  return num * 2;
-}
-console.log(double(5));
-console.log(double(100));
-console.log(double(1.5));
-
+// ৩. বড় শব্দ সরাসরি প্রিন্ট করার ফাংশন
 function printLongWords(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].length > 4) {
@@ -42,20 +30,22 @@ function printLongWords(arr) {
     }
   } 
 }     
-
 printLongWords(skills);
 
+// ৪. বড় শব্দ নতুন ঝুড়িতে জমা করার ফাংশন (এখানে ভুল ঠিক করা হয়েছে)
 function getLongWords (words) {
+  let longWords = []; // ল্যাপটপকে বললাম: এই নাও একটা নতুন খালি ঝুড়ি
   for (let i = 0; i < words.length; i++) {
     if (words[i].length > 4) {
-      longWords.push(words[i]);
+      longWords.push(words[i]); // এখন খালি ঝুড়িতে স্কিল ঢুকবে
     }  
   }
-  return longWords;
+  return longWords; // ঝুড়িটা ফেরত দিলাম
 }
 let result = getLongWords(skills);
-console.log(result);
+console.log(result); // আউটপুট দেখাবে: ['JavaScript', 'React']
 
+// ৫. সব সংখ্যা যোগ করার ফাংশন
 function sumArray(numbers) {
   let total = 0;
   for (let i = 0; i < numbers.length; i++) {
@@ -64,8 +54,6 @@ function sumArray(numbers) {
   return total;
 }
 
-
 let myNumbers = [10, 25, 3, 7, 15];
 let totalSum = sumArray(myNumbers);
-console.log(totalSum);
-  
+console.log(totalSum); // আউটপুট দেখাবে: 60
