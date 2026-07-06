@@ -8,6 +8,9 @@
   <h1 id="mainHeading">Original text is here</h1>
   <button id="changeBtn">Change the text</button>
 
+  <p id="secretText" style="display: none;">You found the hidden message!</p>
+  <button id="toggleBtn">Show/Hide Message</button>
+
   <script src="script.js"></script>
 </body>
 </html>
