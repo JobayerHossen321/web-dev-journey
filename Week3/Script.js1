@@ -1,1 +1,19 @@
+// 1. Select the elements and store them in variables
+// We use '#' because querySelector uses CSS selector syntax to find IDs
 
+const mainHeading = document.querySelector('#mainHeading');
+const changeButton = document.querySelector('#changeBtn');
+
+// 2. Attach an event listener to the button
+// We tell the browser to listen for a 'click' event on the button element
+
+changeButton.addEventListener('click', function() {
+
+  // 3. Change the heading's content when the click happens
+  // .textContent instantly updates the plain text inside the <h1> without a page reload
+ 
+  mainHeading.textContent = 'The DOM magic has worked! ✨';
+
+  // Optional: A quick console log to confirm the event fired smoothly
+  console.log('Button was clicked and heading text was updated.');
+});
