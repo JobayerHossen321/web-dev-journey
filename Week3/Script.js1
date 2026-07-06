@@ -17,3 +17,17 @@ changeButton.addEventListener('click', function() {
   // Optional: A quick console log to confirm the event fired smoothly
   console.log('Button was clicked and heading text was updated.');
 });
+
+  // Select the elements
+        const secretText = document.getElementById('secretText');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        // Add click listener to the toggle button
+        toggleBtn.addEventListener('click', function() {
+            // Check current display state and toggle it
+            if (secretText.style.display === 'none') {
+                secretText.style.display = 'block';
+            } else {
+                secretText.style.display = 'none';
+            }
+        });
