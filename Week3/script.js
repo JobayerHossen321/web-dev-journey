@@ -1,2 +1,2 @@
 const revealBtn = document.getElementById('revealBtn');
-const secretParagraph = document.getElementById('secretParagraph');
+const secretText = document.getElementById('secretText');
