@@ -13,3 +13,11 @@ const revealAllBtn = document.getElementById('revealAllBtn');
 const hiddenItems = document.querySelectorAll('.hidden-item');
 
 console.log(hiddenItems);
+
+const revealAllBtn = document.querySelector('#reveal-all');
+
+revealAllBtn.addEventListener('click', function () {
+  hiddenItems.forEach(function (item) {
+    item.style.display = 'block';
+  });
+});
