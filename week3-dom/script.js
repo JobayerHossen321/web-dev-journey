@@ -10,6 +10,6 @@ revealBtn.addEventListener('click', () => {
 });
 
 const revealAllBtn = document.getElementById('revealAllBtn');
-const hiddenItems = doument.querySelectorAll('.hidden-item');
+const hiddenItems = document.querySelectorAll('.hidden-item');
 
 console.log(hiddenItems);
