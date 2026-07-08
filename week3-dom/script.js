@@ -13,12 +13,9 @@ const revealAllBtn = document.getElementById('revealAllBtn');
 const hiddenItems = document.querySelectorAll('.hidden-item');
 
 revealAllBtn.addEventListener('click', function () {
-  hiddenItems.forEach(function (item) {
-    item.style.display = 'block';
-  });
-    if (item.style.display === 'none' || item.style.display === '') {
+  if (item.style.display === 'none' || item.style.display === '') {
     item.style.display = 'block';
   } else {
-    item.style.display = 'none';
-  }
-});
+    item.style.display = 'none'; 
+  });
+  });
