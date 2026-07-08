@@ -9,3 +9,7 @@ revealBtn.addEventListener('click', () => {
   }  
 });
 
+const revealAllBtn = document.getElementById('revealAllBtn');
+const hiddenItems = doument.querySelectorAll('.hidden-item');
+
+console.log(hiddenItems);
