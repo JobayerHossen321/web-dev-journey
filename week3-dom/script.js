@@ -10,8 +10,14 @@ const hiddenItems = document.querySelectorAll('.hidden-item');
 
 // Step 2: Add event listener to the first button
 revealBtn.addEventListener('click', function() {
-    // Change the CSS display property to show the paragraph
-    secretText.style.display = 'block';
+// If it's currently hidden (none) or hasn't been set yet ('')
+    if (secretText.style.display === 'none' || secretText.style.display === '') {
+        secretText.style.display = 'block';
+        revealBtn.textContent = 'Hide Secret';
+    } else {
+        secretText.style.display = 'none';
+        revealBtn.textContent = 'Reveal Secret';
+    }
 });
 
 // Step 3: Add event listener to the "Reveal All" button
