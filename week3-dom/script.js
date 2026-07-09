@@ -21,14 +21,3 @@ revealAllBtn.addEventListener('click', function() {
         item.style.display = 'block';
     });
 });
-
-// Step 4: Rewritten with an if/else statement to toggle
-revealBtn.addEventListener('click', function() {
-    if (secretText.style.display === 'block') {
-        secretText.style.display = 'none';
-        revealBtn.textContent = 'Reveal Secret'; // Optional: Change button text back
-    } else {
-        secretText.style.display = 'block';
-        revealBtn.textContent = 'Hide Secret';   // Optional: Change button text dynamically
-    }
-});
