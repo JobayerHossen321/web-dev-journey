@@ -22,8 +22,20 @@ revealBtn.addEventListener('click', function() {
 
 // Step 3: Add event listener to the "Reveal All" button
 revealAllBtn.addEventListener('click', function() {
-    // Loop through each hidden paragraph in the collection
-    hiddenItems.forEach(function(item) {
-        item.style.display = 'block';
-    });
+// Look at the very first item to check the current state
+    const firstItem = hiddenItems[0];
+    
+    if (firstItem.style.display === 'none' || firstItem.style.display === '') {
+        // Loop through EVERY item and change display to 'block'
+        hiddenItems.forEach(function(item) {
+            item.style.display = 'block';
+        });
+        revealAllBtn.textContent = 'Hide All';
+    } else {
+        // Loop through EVERY item and change display to 'none'
+        hiddenItems.forEach(function(item) {
+            item.style.display = 'none';
+        });
+        revealAllBtn.textContent = 'Reveal All';
+    }
 });
