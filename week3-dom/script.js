@@ -24,12 +24,11 @@ revealAllBtn.addEventListener('click', function() {
 
 // Step 4: Rewritten with an if/else statement to toggle
 revealBtn.addEventListener('click', function() {
-    // Check if it's currently hidden OR if it hasn't been set yet
-    if (secretText.style.display === 'none' || secretText.style.display === '') {
-        secretText.style.display = 'block';
-        revealBtn.textContent = 'Hide Secret';
-    } else {
+    if (secretText.style.display === 'block') {
         secretText.style.display = 'none';
-        revealBtn.textContent = 'Reveal Secret';
+        revealBtn.textContent = 'Reveal Secret'; // Optional: Change button text back
+    } else {
+        secretText.style.display = 'block';
+        revealBtn.textContent = 'Hide Secret';   // Optional: Change button text dynamically
     }
 });
