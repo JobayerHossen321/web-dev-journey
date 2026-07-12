@@ -94,3 +94,12 @@ themeBtn.addEventListener('click', function() {
     themeBtn.textContent = "Switch to Dark Mode";
   }
 });
+
+//Toggle Logic
+const aboutHeader = document.getElementById('about-header');
+const aboutContent = document.getElementById('about-content');
+
+aboutHeader.addEventListener('click', function() {
+  // This will add 'hidden' if it's missing, or remove it if it's there!
+  aboutContent.classList.toggle('hidden');
+});
