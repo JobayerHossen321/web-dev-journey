@@ -1,14 +1,18 @@
-#box-container {
-  display: flex;
-  gap: 15px;
-  padding: 20px;
-  background-color: #f0f0f0;
-}
+// 1. Grab the parent container from the DOM
+const container = document.getElementById('box-container');
 
-.box {
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-  border: 2px solid #333;
-  transition: background-color 0.3s ease; /* Smooth color change */
-}
+// 2. Add ONE listener to the parent
+container.addEventListener('click', function(event) {
+  
+  // 3. Log event.target to the console (as requested in the task)
+  console.log("You clicked on:", event.target);
+
+  // 4. Critical Check: Ensure the user actually clicked a box, 
+  // and not the empty space inside the parent container.
+  if (event.target.classList.contains('box')) {
+    
+    // 5. Change that specific box's background color
+    event.target.style.backgroundColor = 'darkpurple'; 
+    // Tip: You can change 'darkpurple' to any color you like, or randomize it!
+  }
+});
