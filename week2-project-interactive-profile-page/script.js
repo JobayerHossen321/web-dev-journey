@@ -78,3 +78,19 @@ if (currentHour < 12) {
 
 // 4. Update the text dynamically!
 heading.textContent = `${greeting}, I am Jobayer Hossen`;
+
+const themeBtn = document.getElementById('theme-toggle');
+
+// Add the Dark Mode logic
+
+themeBtn.addEventListener('click', function() {
+  // Toggle the class on the entire body element
+  document.body.classList.toggle('dark-theme');
+  
+  // Update the button text so the user knows what will happen next click
+  if (document.body.classList.contains('dark-theme')) {
+    themeBtn.textContent = "Switch to Light Mode";
+  } else {
+    themeBtn.textContent = "Switch to Dark Mode";
+  }
+});
