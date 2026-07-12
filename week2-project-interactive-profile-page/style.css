@@ -1,1 +1,12 @@
+/* This class changes the background and text color when added to the body */
+body.dark-theme {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
 
+/* Optional: Make your text boxes and tables look cleaner in dark mode */
+body.dark-theme #box-container, 
+body.dark-theme table {
+  background-color: #2d2d2d;
+  color: white;
+}
