@@ -12,7 +12,7 @@ container.addEventListener('click', function(event) {
   if (event.target.classList.contains('box')) {
     
     // 5. Change that specific box's background color
-    event.target.style.backgroundColor = 'darkpurple'; 
+    event.target.style.backgroundColor = '#301934'; 
     // Tip: You can change 'darkpurple' to any color you like, or randomize it!
   }
 });
