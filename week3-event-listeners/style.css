@@ -12,3 +12,10 @@
   border: 2px solid #333;
   transition: background-color 0.3s ease; /* Smooth color change */
 }
+
+/* Keep your existing .box styling here, then add these at the bottom: */
+
+.box:nth-child(1) { background-color: lightcoral; }
+.box:nth-child(2) { background-color: lightblue; }
+.box:nth-child(3) { background-color: lightgreen; }
+.box:nth-child(4) { background-color: khaki; }
