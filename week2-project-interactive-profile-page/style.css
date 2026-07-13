@@ -144,15 +144,40 @@ nav a:hover {
     }
 }
 
-/* This class changes the background and text color when added to the body */
+/* ==========================================================================
+   DARK THEME STYLES (Keep at the very bottom of style.css)
+   ========================================================================== */
+
 body.dark-theme {
-  background-color: #1e1e1e;
-  color: #ffffff;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
-/* Optional: Make your text boxes and tables look cleaner in dark mode */
-body.dark-theme #box-container, 
-body.dark-theme table {
-  background-color: #2d2d2d;
-  color: white;
+/* Make the central profile card adapt to dark mode */
+body.dark-theme main {
+    background-color: #2d2d2d !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Force headings and text inside main to adapt */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme p,
+body.dark-theme .intro {
+    color: #ffffff !important;
+}
+
+/* Fix the table in dark mode */
+body.dark-theme td {
+    border-color: #444;
+    color: #ffffff;
+}
+
+body.dark-theme th {
+    background-color: #1a6a9a; /* Slightly darker blue header for contrast */
+}
+
+/* NEW HELPER CLASS: Put this here for the show/hide feature */
+.hidden {
+    display: none !important;
 }
