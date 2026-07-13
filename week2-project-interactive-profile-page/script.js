@@ -124,24 +124,27 @@ addSkillBtn.addEventListener('click', function() {
     // Create a new <li> element dynamically
     const newLi = document.createElement('li');
     
-    // Inject the text alongside its own delete button
-    newLi.innerHTML = `${skillText} <button class="delete-btn">X</button>`;
+   // SAFE STEP: Set text via textContent to block script injections
+    newLi.textContent = skillText + " "; 
     
-    // Append the brand new <li> inside our <ul> container
+    // Create the delete button dynamically
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.textContent = 'X';
+    
+    // Nest the button safely inside the <li>
+    newLi.appendChild(deleteBtn);
+    
+    // Append the entire clean row inside our main list <ul>
     skillsList.appendChild(newLi);
     
-    // Reset the input box text field to blank
     newSkillInput.value = "";
 });
 
 // 3. Logic to DELETE a skill using Event Delegation
-// Instead of adding listeners to individual buttons, we listen to the parent <ul>
 skillsList.addEventListener('click', function(event) {
-    // Check if what the user clicked is actually a delete button
     if (event.target.classList.contains('delete-btn')) {
-        // Find the parent <li> containing this specific button
         const liToRemove = event.target.parentElement;
-        // Remove it from the DOM entirely!
         liToRemove.remove();
     }
 });
