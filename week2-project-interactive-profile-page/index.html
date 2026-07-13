@@ -41,15 +41,23 @@
             </div>
         </section>
 
-        <!-- SECTION 2: SKILLS -->
-        <section id="skills">
-            <h2>My Skills</h2>
-            <ul>
-                <li>HTML &amp; CSS</li>
-                <li>JavaScript</li>
-                <li>React.js</li>
-            </ul>
-        </section>
+       <!-- SECTION 2: SKILLS -->
+       <section id="skills">
+         <h2>My Skills</h2>
+    
+        <!-- We added the id 'skills-list' here so JavaScript can target it -->
+        <ul id="skills-list">
+          <li>HTML &amp; CSS <button class="delete-btn">X</button></li>
+          <li>JavaScript <button class="delete-btn">X</button></li>
+          <li>React.js <button class="delete-btn">X</button></li>
+      </ul>
+
+        <!-- Input control to add new skills -->
+        <div class="skill-input-container" style="margin-top: 15px;">
+          <input type="text" id="new-skill-input" placeholder="Enter a new skill...">
+          <button id="add-skill-btn">Add Skill</button>
+      </div>
+     </section>
 
         <!-- SECTION 3: PLAN -->
         <section id="plan">
