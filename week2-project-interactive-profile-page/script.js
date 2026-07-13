@@ -101,3 +101,47 @@ const aboutContent = document.getElementById('about-content');
 aboutHeader.addEventListener('click', function() {
     aboutContent.classList.toggle('hidden');
 });
+
+// ==========================================================================
+// FEATURE 4: DYNAMIC SKILLS LIST (ADD & DELETE VIA EVENT DELEGATION)
+// ==========================================================================
+
+// 1. Grab our DOM elements
+const skillsList = document.getElementById('skills-list');
+const newSkillInput = document.getElementById('new-skill-input');
+const addSkillBtn = document.getElementById('add-skill-btn');
+
+// 2. Logic to ADD a new skill
+addSkillBtn.addEventListener('click', function() {
+    const skillText = newSkillInput.value.trim(); // Grab text and trim accidental extra spaces
+    
+    // Validation: Don't allow empty skills!
+    if (skillText === "") {
+        alert("Please type a skill name first!");
+        return;
+    }
+    
+    // Create a new <li> element dynamically
+    const newLi = document.createElement('li');
+    
+    // Inject the text alongside its own delete button
+    newLi.innerHTML = `${skillText} <button class="delete-btn">X</button>`;
+    
+    // Append the brand new <li> inside our <ul> container
+    skillsList.appendChild(newLi);
+    
+    // Reset the input box text field to blank
+    newSkillInput.value = "";
+});
+
+// 3. Logic to DELETE a skill using Event Delegation
+// Instead of adding listeners to individual buttons, we listen to the parent <ul>
+skillsList.addEventListener('click', function(event) {
+    // Check if what the user clicked is actually a delete button
+    if (event.target.classList.contains('delete-btn')) {
+        // Find the parent <li> containing this specific button
+        const liToRemove = event.target.parentElement;
+        // Remove it from the DOM entirely!
+        liToRemove.remove();
+    }
+});
