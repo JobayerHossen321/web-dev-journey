@@ -181,3 +181,22 @@ body.dark-theme th {
 .hidden {
     display: none !important;
 }
+
+/* Style for the inline delete buttons */
+.delete-btn {
+    background-color: #e74c3c !important;
+    color: white;
+    padding: 2px 6px;
+    margin-left: 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b !important;
+}
+
+#skills-list li {
+    margin-bottom: 8px;
+}
