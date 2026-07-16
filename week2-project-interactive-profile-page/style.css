@@ -200,6 +200,7 @@ body.dark-theme th {
 #skills-list li {
     margin-bottom: 8px;
 }
+
 /* Visual cues for inline editing */
 .editable-field {
     cursor: pointer;
