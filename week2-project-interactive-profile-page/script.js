@@ -148,3 +148,60 @@ skillsList.addEventListener('click', function(event) {
         liToRemove.remove();
     }
 });
+
+// ==========================================================================
+// FEATURE 5: INLINE PROFILE EDITING WITH VALIDATION
+// ==========================================================================
+
+// 1. Grab the element
+const welcomeHeading = document.getElementById('welcome-heading');
+
+// 2. Listen for a click on the heading
+welcomeHeading.addEventListener('click', function() {
+    // If we are already editing, do nothing
+    if (welcomeHeading.querySelector('input')) return;
+
+    // Extract the current text name (removing any dynamic time greetings for clean editing)
+    const currentFullText = welcomeHeading.textContent;
+    // Let's grab just the name part or edit the full greeting
+    
+    // Create a temporary input element
+    const inputField = document.createElement('input');
+    inputField.type = 'text';
+    inputField.value = currentFullText;
+    inputField.className = 'edit-input';
+    
+    // Clear out the heading text and drop the input field inside it
+    welcomeHeading.textContent = '';
+    welcomeHeading.appendChild(inputField);
+    
+    // Automatically focus the cursor into the input field
+    inputField.focus();
+    
+    // Function to save the changes
+    function saveChanges() {
+        const newValue = inputField.value.trim();
+        
+        // STRETCH GOAL: Form Validation (Field cannot be empty!)
+        if (newValue === "") {
+            alert("Name field cannot be empty!");
+            inputField.focus();
+            return;
+        }
+        
+        // Restore the heading text with the new value
+        welcomeHeading.textContent = newValue;
+    }
+    
+    // Save when the user presses 'Enter'
+    inputField.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            saveChanges();
+        }
+    });
+    
+    // Save when the user clicks away from the text box (blur event)
+    inputField.addEventListener('blur', function() {
+        saveChanges();
+    });
+});
