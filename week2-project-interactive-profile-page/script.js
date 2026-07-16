@@ -205,3 +205,28 @@ welcomeHeading.addEventListener('click', function() {
         saveChanges();
     });
 });
+
+// ==========================================================================
+// STRETCH GOAL: PROFILE VIEWS COUNTER (LOCAL STORAGE)
+// ==========================================================================
+
+// 1. Grab the DOM element where the number will go
+const viewsCountSpan = document.getElementById('views-count');
+
+// 2. Read the current count from the browser's memory
+let currentViews = localStorage.getItem('profile_views');
+
+// 3. Check if this is the first time the user is visiting the page
+if (currentViews === null) {
+    // If no record exists yet, initialize it at 1 (since this load is view #1)
+    currentViews = 1;
+} else {
+    // If a record exists, turn the saved string text into a number and add 1
+    currentViews = parseInt(currentViews) + 1;
+}
+
+// 4. Save the updated count back into the browser's permanent memory
+localStorage.setItem('profile_views', currentViews);
+
+// 5. Update the DOM display text so the user can see it!
+viewsCountSpan.textContent = currentViews;
