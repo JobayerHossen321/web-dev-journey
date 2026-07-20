@@ -2,29 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logic Quiz App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>JavaScript Quiz App</h1>
+    <div class="quiz-card">
+        <!-- Header Section -->
+        <header class="quiz-header">
+            <h1>JavaScript Quiz</h1>
+            <div id="timer-text" class="timer-badge">Time Left: 10s</div>
+        </header>
 
-    <!-- ⏱️ Timer Placeholder -->
-    <h3 id="timer-text">Time Left: 10s</h3>
+        <!-- Question Section -->
+        <main class="quiz-body">
+            <h2 id="question-text">Question will appear here</h2>
+            
+            <!-- Answer Buttons Container -->
+            <div id="options-container" class="options-grid"></div>
+            
+            <!-- Feedback Message -->
+            <p id="feedback-text" class="feedback-msg"></p>
+        </main>
 
-    <!-- Question Placeholder -->
-    <h2 id="question-text">Question will appear here</h2>
-
-    <!-- Answer Buttons Container -->
-    <div id="options-container"></div>
-
-    <!-- Score & Status -->
-    <p id="score-text">Score: 0</p>
-    <p id="feedback-text"></p>
-
-    <!-- 🔄 Restart Button Placeholder -->
-    <div id="restart-container"></div>
+        <!-- Footer / Score Section -->
+        <footer class="quiz-footer">
+            <span id="score-text" class="score-badge">Score: 0</span>
+            <div id="restart-container"></div>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
-</html>
 </html>
