@@ -1,1 +1,150 @@
+/* ==========================================================================
+   1. RESET & PAGE BACKGROUND
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   2. MAIN QUIZ CARD CONTAINER
+   ========================================================================== */
+.quiz-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================================================
+   3. HEADER & TIMER
+   ========================================================================== */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #334155;
+    padding-bottom: 15px;
+}
+
+.quiz-header h1 {
+    font-size: 1.4rem;
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+.timer-badge {
+    background-color: #334155;
+    color: #f1f5f9;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   4. QUESTION & OPTIONS
+   ========================================================================== */
+#question-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #f8fafc;
+    margin-bottom: 20px;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Dynamic Option Buttons */
+.options-grid button {
+    background-color: #334155;
+    color: #f8fafc;
+    border: 1px solid #475569;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.options-grid button:hover:not(:disabled) {
+    background-color: #0284c7;
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+}
+
+.options-grid button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Disabled state after selection/timeout */
+.options-grid button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   5. FEEDBACK MESSAGE & FOOTER
+   ========================================================================== */
+.feedback-msg {
+    min-height: 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #38bdf8;
+    margin-top: 15px;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #334155;
+    padding-top: 15px;
+}
+
+.score-badge {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+/* Restart Button Style */
+#restart-container button {
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#restart-container button:hover {
+    background-color: #059669;
+}
