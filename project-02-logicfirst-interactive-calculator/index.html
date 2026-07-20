@@ -4,44 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Simple Calculator</h1>
+    <div class="calculator-card">
+        <!-- Display Screen -->
+        <div class="calculator-display">
+            <input type="text" id="display" readonly value="0">
+        </div>
 
-    <!-- Display Screen -->
-    <input type="text" id="display" readonly value="0">
+        <!-- Button Grid -->
+        <div id="buttons-container" class="calculator-grid">
+            <!-- Row 1 -->
+            <button class="btn btn-clear">C</button>
+            <button class="btn btn-operator">/</button>
+            <button class="btn btn-operator">*</button>
+            <button class="btn btn-operator">-</button>
 
-    <br><br>
+            <!-- Row 2 -->
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn btn-operator">+</button>
 
-    <!-- Calculator Buttons -->
-    <div id="buttons-container">
-        <!-- Row 1 -->
-        <button class="btn-clear">C</button>
-        <button class="btn-operator">/</button>
-        <button class="btn-operator">*</button>
-        <button class="btn-operator">-</button>
-        <br>
-        <!-- Row 2 -->
-        <button class="btn-number">7</button>
-        <button class="btn-number">8</button>
-        <button class="btn-number">9</button>
-        <button class="btn-operator">+</button>
-        <br>
-        <!-- Row 3 -->
-        <button class="btn-number">4</button>
-        <button class="btn-number">5</button>
-        <button class="btn-number">6</button>
-        <button class="btn-equal">=</button>
-        <br>
-        <!-- Row 4 -->
-        <button class="btn-number">1</button>
-        <button class="btn-number">2</button>
-        <button class="btn-number">3</button>
-        <br>
-        <!-- Row 5 -->
-        <button class="btn-number">0</button>
-        <button class="btn-number">.</button>
+            <!-- Row 3 -->
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn btn-equal">=</button>
+
+            <!-- Row 4 -->
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">.</button>
+
+            <!-- Row 5 -->
+            <button class="btn btn-zero">0</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
