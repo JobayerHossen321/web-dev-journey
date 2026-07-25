@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Ayah Fetcher</title>
+    <title>Full Surah Viewer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="card">
-        <h1>Random Ayah Generator</h1>
+        <h1 id="surah-title">Select a Surah</h1>
         
-        <!-- Status Message (for Loading / Errors) -->
-        <p id="status-msg" class="status"></p>
-
-        <!-- Ayah Display Container -->
-        <div id="ayah-container" class="hidden">
-            <p id="arabic-text" dir="rtl" class="arabic"></p>
-            <p id="bengali-text" class="bengali"></p>
-            <p id="english-text" class="english"></p>
-            <p id="reference" class="reference"></p>
+        <!-- Controls Header -->
+        <div class="controls">
+            <select id="surah-select">
+                <option value="1">1. Al-Faatiha</option>
+                <option value="108">108. Al-Kawthar</option>
+                <option value="112">112. Al-Ikhlaas</option>
+                <option value="113">113. Al-Falaq</option>
+                <option value="114">114. An-Naas</option>
+            </select>
+            <button id="fetch-btn">Load Surah</button>
         </div>
 
-        <button id="fetch-btn">Get Random Ayah</button>
+        <!-- Status Message -->
+        <p id="status-msg" class="status"></p>
+
+        <!-- Container for ALL Ayahs -->
+        <div id="surah-container" class="ayah-list"></div>
     </div>
 
     <script src="script.js"></script>
