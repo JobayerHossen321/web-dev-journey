@@ -1,1 +1,73 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
 
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.arabic {
+    font-size: 1.8rem;
+    color: #1b4332;
+    line-height: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+}
+
+.english {
+    font-size: 1.1rem;
+    color: #2d6a4f;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.reference {
+    font-weight: bold;
+    color: #52b788;
+    margin-bottom: 1.5rem;
+}
+
+.status {
+    font-weight: 500;
+    color: #555;
+}
+
+.error {
+    color: #d90429;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    background-color: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #1b4332;
+}
+
+button:disabled {
+    background-color: #acccbc;
+    cursor: not-allowed;
+}
