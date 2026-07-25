@@ -3,8 +3,7 @@ body {
     background-color: #f4f7f6;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    padding: 2rem 0;
     margin: 0;
 }
 
@@ -13,63 +12,38 @@ body {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 550px;
+    max-width: 650px;
     width: 90%;
+}
+
+h1 {
     text-align: center;
-}
-
-.arabic {
-    font-size: 1.8rem;
     color: #1b4332;
-    line-height: 2.3rem;
-    margin-bottom: 1.2rem;
-    font-family: 'Traditional Arabic', 'Amiri', serif;
+    margin-top: 0;
 }
 
-/* Styled for clear Bengali text presentation */
-.bengali {
-    font-size: 1.15rem;
-    color: #1d3557;
-    line-height: 1.6rem;
-    margin-bottom: 1rem;
-    font-family: 'Kalpurush', 'SolaimanLipi', sans-serif;
-}
-
-.english {
-    font-size: 1.05rem;
-    color: #2d6a4f;
-    font-style: italic;
-    margin-bottom: 1rem;
-}
-
-.reference {
-    font-weight: bold;
-    color: #52b788;
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     margin-bottom: 1.5rem;
 }
 
-.status {
-    font-weight: 500;
-    color: #555;
-}
-
-.error {
-    color: #d90429;
-}
-
-.hidden {
-    display: none;
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
 button {
     background-color: #2d6a4f;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 button:hover {
@@ -78,5 +52,57 @@ button:hover {
 
 button:disabled {
     background-color: #acccbc;
-    cursor: not-allowed;
+}
+
+.status {
+    text-align: center;
+    font-weight: 500;
+}
+
+.error {
+    color: #d90429;
+}
+
+/* Individual Ayah Card Styles */
+.ayah-card {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.2rem 0;
+}
+
+.ayah-card:last-child {
+    border-bottom: none;
+}
+
+.ayah-num {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2d6a4f;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.arabic {
+    font-size: 1.8rem;
+    color: #1b4332;
+    line-height: 2.3rem;
+    margin: 0.5rem 0;
+    text-align: right;
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+}
+
+.bengali {
+    font-size: 1.1rem;
+    color: #1d3557;
+    margin: 0.4rem 0;
+    font-family: 'Kalpurush', sans-serif;
+}
+
+.english {
+    font-size: 1rem;
+    color: #555;
+    font-style: italic;
+    margin: 0.4rem 0;
 }
