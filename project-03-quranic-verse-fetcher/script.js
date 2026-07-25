@@ -5,24 +5,25 @@ const statusMsg = document.getElementById("status-msg");
 const surahContainer = document.getElementById("surah-container");
 const surahTitle = document.getElementById("surah-title");
 
-// 2. Step A: Populate all 114 Surahs into the dropdown menu
+// Standard Bismillah string used by Uthmani text
+const BISMILLAH = "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ";
+
+// 2. Step A: Populate all 114 Surahs into dropdown
 async function populateSurahList() {
     try {
         const response = await fetch("https://api.alquran.cloud/v1/surah");
         const json = await response.json();
         
-        // Clear select element
         surahSelect.innerHTML = "";
 
-        // Loop through all 114 Surahs and create <option> tags
         json.data.forEach((surah) => {
             const option = document.createElement("option");
-            option.value = surah.number; // e.g., 1, 2, ..., 114
+            option.value = surah.number;
             option.textContent = `${surah.number}. ${surah.englishName} (${surah.name})`;
             surahSelect.appendChild(option);
         });
 
-        // Load Surah #1 by default once dropdown is ready
+        // Load Surah #1 on initial startup
         getFullSurah();
 
     } catch (error) {
@@ -31,11 +32,10 @@ async function populateSurahList() {
     }
 }
 
-// 3. Step B: Fetch the selected Surah's verses
+// 3. Step B: Fetch and display the chosen Surah
 async function getFullSurah() {
     const surahNum = surahSelect.value;
     
-    // Guard clause if dropdown isn't ready yet
     if (!surahNum) return;
 
     const API_URL = `https://api.alquran.cloud/v1/surah/${surahNum}/editions/quran-uthmani,en.asad,bn.bengali`;
@@ -43,7 +43,7 @@ async function getFullSurah() {
     fetchBtn.disabled = true;
     statusMsg.textContent = "Loading verses...";
     statusMsg.classList.remove("error");
-    surahContainer.innerHTML = ""; // Clear existing verses
+    surahContainer.innerHTML = "";
 
     try {
         const response = await fetch(API_URL);
@@ -54,22 +54,39 @@ async function getFullSurah() {
 
         const json = await response.json();
 
-        // Arrays for Arabic, English, Bengali
+        // Variables declared INSIDE function scope
         const arabicAyahs = json.data[0].ayahs;
         const englishAyahs = json.data[1].ayahs;
         const bengaliAyahs = json.data[2].ayahs;
 
-        // Update Header Title
         surahTitle.textContent = `Surah ${json.data[0].englishName} (${json.data[0].numberOfAyahs} Verses)`;
 
-        // Render each Ayah
+        // Show a standalone Bismillah header for all Surahs except Surah 9 (At-Tawbah) and Surah 1 (where Bismillah IS Ayah 1)
+        if (surahNum !== "1" && surahNum !== "9") {
+            const bismillahHeader = document.createElement("div");
+            bismillahHeader.style.textAlign = "center";
+            bismillahHeader.style.margin = "1rem 0 1.5rem 0";
+            bismillahHeader.innerHTML = `<p class="arabic" dir="rtl" style="text-align: center; font-size: 2rem;">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>`;
+            surahContainer.appendChild(bismillahHeader);
+        }
+
+        // Loop through the ayahs
         arabicAyahs.forEach((arabicItem, index) => {
+            let verseText = arabicItem.text;
+
+            // Strip prepended Bismillah from Ayah 1 text for Surahs 2..114 (excluding 9)
+            if (arabicItem.numberInSurah === 1 && surahNum !== "1" && surahNum !== "9") {
+                if (verseText.startsWith(BISMILLAH)) {
+                    verseText = verseText.replace(BISMILLAH, "");
+                }
+            }
+
             const ayahCard = document.createElement("div");
             ayahCard.className = "ayah-card";
 
             ayahCard.innerHTML = `
                 <span class="ayah-num">${arabicItem.numberInSurah}</span>
-                <p class="arabic" dir="rtl">${arabicItem.text}</p>
+                <p class="arabic" dir="rtl">${verseText}</p>
                 <p class="bengali">${bengaliAyahs[index].text}</p>
                 <p class="english">${englishAyahs[index].text}</p>
             `;
@@ -91,41 +108,7 @@ async function getFullSurah() {
 
 // 4. Event Listeners
 fetchBtn.addEventListener("click", getFullSurah);
-surahSelect.addEventListener("change", getFullSurah); // Loads immediately on dropdown selection change!
+surahSelect.addEventListener("change", getFullSurah);
 
-// 5. Initialize
+// 5. Start App
 populateSurahList();
-
-// Bismillah text string as returned by Uthmani edition
-const BISMILLAH = "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ";
-
-arabicAyahs.forEach((arabicItem, index) => {
-    let text = arabicItem.text;
-
-    // Remove Bismillah from Ayah 1 if it's not Surah 1 or Surah 9
-    if (arabicItem.numberInSurah === 1 && surahNum !== "1" && surahNum !== "9") {
-        if (text.startsWith(BISMILLAH)) {
-            text = text.replace(BISMILLAH, "");
-        }
-    }
-
-    const ayahCard = document.createElement("div");
-    ayahCard.className = "ayah-card";
-
-    ayahCard.innerHTML = `
-        <span class="ayah-num">${arabicItem.numberInSurah}</span>
-        <p class="arabic" dir="rtl">${text}</p>
-        <p class="bengali">${bengaliAyahs[index].text}</p>
-        <p class="english">${englishAyahs[index].text}</p>
-    `;
-
-    surahContainer.appendChild(ayahCard);
-});
-
-// Show Bismillah header above verses for Surahs other than Surah 9 (At-Tawbah)
-if (surahNum !== "9" && surahNum !== "1") {
-    const bismillahHeader = document.createElement("div");
-    bismillahHeader.className = "bismillah-header";
-    bismillahHeader.innerHTML = `<p class="arabic" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>`;
-    surahContainer.appendChild(bismillahHeader);
-}
