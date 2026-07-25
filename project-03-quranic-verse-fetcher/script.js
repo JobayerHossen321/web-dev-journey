@@ -54,14 +54,27 @@ async function getFullSurah() {
 
         const json = await response.json();
 
-        // Variables declared INSIDE function scope
+        // Extract raw arrays from API response
         const arabicAyahs = json.data[0].ayahs;
         const englishAyahs = json.data[1].ayahs;
         const bengaliAyahs = json.data[2].ayahs;
 
+        // --- SAFE DATA MATCHING ---
+        // Create lookup maps indexed by verse number instead of relying on array index
+        const englishMap = {};
+        englishAyahs.forEach(item => {
+            englishMap[item.numberInSurah] = item.text;
+        });
+
+        const bengaliMap = {};
+        bengaliAyahs.forEach(item => {
+            bengaliMap[item.numberInSurah] = item.text;
+        });
+
+        // Update Title Header
         surahTitle.textContent = `Surah ${json.data[0].englishName} (${json.data[0].numberOfAyahs} Verses)`;
 
-        // Show a standalone Bismillah header for all Surahs except Surah 9 (At-Tawbah) and Surah 1 (where Bismillah IS Ayah 1)
+        // Show standalone Bismillah header for all Surahs except Surah 9 (At-Tawbah) and Surah 1
         if (surahNum !== "1" && surahNum !== "9") {
             const bismillahHeader = document.createElement("div");
             bismillahHeader.style.textAlign = "center";
@@ -70,25 +83,30 @@ async function getFullSurah() {
             surahContainer.appendChild(bismillahHeader);
         }
 
-        // Loop through the ayahs
-        arabicAyahs.forEach((arabicItem, index) => {
+        // Loop through the Arabic verses
+        arabicAyahs.forEach((arabicItem) => {
+            const verseNum = arabicItem.numberInSurah;
             let verseText = arabicItem.text;
 
             // Strip prepended Bismillah from Ayah 1 text for Surahs 2..114 (excluding 9)
-            if (arabicItem.numberInSurah === 1 && surahNum !== "1" && surahNum !== "9") {
+            if (verseNum === 1 && surahNum !== "1" && surahNum !== "9") {
                 if (verseText.startsWith(BISMILLAH)) {
                     verseText = verseText.replace(BISMILLAH, "");
                 }
             }
 
+            // Look up translations by explicit verse ID key with fallbacks
+            const bengaliText = bengaliMap[verseNum] || "[বাংলা অনুবাদ পাওয়া যায়নি]";
+            const englishText = englishMap[verseNum] || "[English Translation Missing]";
+
             const ayahCard = document.createElement("div");
             ayahCard.className = "ayah-card";
 
             ayahCard.innerHTML = `
-                <span class="ayah-num">${arabicItem.numberInSurah}</span>
+                <span class="ayah-num">${verseNum}</span>
                 <p class="arabic" dir="rtl">${verseText}</p>
-                <p class="bengali">${bengaliAyahs[index].text}</p>
-                <p class="english">${englishAyahs[index].text}</p>
+                <p class="bengali">${bengaliText}</p>
+                <p class="english">${englishText}</p>
             `;
 
             surahContainer.appendChild(ayahCard);
