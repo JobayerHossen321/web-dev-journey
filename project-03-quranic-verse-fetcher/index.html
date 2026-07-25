@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Ayah Fetcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="card">
+        <h1>Random Ayah Generator</h1>
+        
+        <!-- Status Message (for Loading / Errors) -->
+        <p id="status-msg" class="status"></p>
+
+        <!-- Ayah Display Container -->
+        <div id="ayah-container" class="hidden">
+            <p id="arabic-text" dir="rtl" class="arabic"></p>
+            <p id="english-text" class="english"></p>
+            <p id="reference" class="reference"></p>
+        </div>
+
+        <button id="fetch-btn">Get Random Ayah</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
