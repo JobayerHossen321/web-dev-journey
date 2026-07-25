@@ -95,3 +95,37 @@ surahSelect.addEventListener("change", getFullSurah); // Loads immediately on dr
 
 // 5. Initialize
 populateSurahList();
+
+// Bismillah text string as returned by Uthmani edition
+const BISMILLAH = "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ";
+
+arabicAyahs.forEach((arabicItem, index) => {
+    let text = arabicItem.text;
+
+    // Remove Bismillah from Ayah 1 if it's not Surah 1 or Surah 9
+    if (arabicItem.numberInSurah === 1 && surahNum !== "1" && surahNum !== "9") {
+        if (text.startsWith(BISMILLAH)) {
+            text = text.replace(BISMILLAH, "");
+        }
+    }
+
+    const ayahCard = document.createElement("div");
+    ayahCard.className = "ayah-card";
+
+    ayahCard.innerHTML = `
+        <span class="ayah-num">${arabicItem.numberInSurah}</span>
+        <p class="arabic" dir="rtl">${text}</p>
+        <p class="bengali">${bengaliAyahs[index].text}</p>
+        <p class="english">${englishAyahs[index].text}</p>
+    `;
+
+    surahContainer.appendChild(ayahCard);
+});
+
+// Show Bismillah header above verses for Surahs other than Surah 9 (At-Tawbah)
+if (surahNum !== "9" && surahNum !== "1") {
+    const bismillahHeader = document.createElement("div");
+    bismillahHeader.className = "bismillah-header";
+    bismillahHeader.innerHTML = `<p class="arabic" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>`;
+    surahContainer.appendChild(bismillahHeader);
+}
