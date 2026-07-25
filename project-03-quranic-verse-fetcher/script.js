@@ -1,64 +1,68 @@
 // 1. Select DOM elements
 const fetchBtn = document.getElementById("fetch-btn");
+const surahSelect = document.getElementById("surah-select");
 const statusMsg = document.getElementById("status-msg");
-const ayahContainer = document.getElementById("ayah-container");
+const surahContainer = document.getElementById("surah-container");
+const surahTitle = document.getElementById("surah-title");
 
-const arabicText = document.getElementById("arabic-text");
-const bengaliText = document.getElementById("bengali-text");
-const englishText = document.getElementById("english-text");
-const reference = document.getElementById("reference");
+// 2. Main function to fetch a FULL Surah
+async function getFullSurah() {
+    const surahNum = surahSelect.value;
+    const API_URL = `https://api.alquran.cloud/v1/surah/${surahNum}/editions/quran-uthmani,en.asad,bn.bengali`;
 
-// 2. Endpoint with 3 requested editions: Arabic, English, Bengali
-const API_URL = "https://api.alquran.cloud/v1/ayah/random/editions/quran-uthmani,en.asad,bn.bengali";
-
-// 3. Main fetch function
-async function getRandomAyah() {
-    // --- UI State: Loading Phase ---
+    // --- Loading State ---
     fetchBtn.disabled = true;
-    statusMsg.textContent = "Loading Ayah...";
+    statusMsg.textContent = "Loading full Surah...";
     statusMsg.classList.remove("error");
-    ayahContainer.classList.add("hidden");
+    surahContainer.innerHTML = ""; // Clear previous verses
 
     try {
         const response = await fetch(API_URL);
 
         if (!response.ok) {
-            throw new Error(`Failed to fetch data (Status: ${response.status})`);
+            throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
         const json = await response.json();
-        
-        // --- Index mapping according to URL request order ---
-        const arabicData = json.data[0];  // quran-uthmani
-        const englishData = json.data[1]; // en.asad
-        const bengaliData = json.data[2]; // bn.bengali
 
-        // --- UI State: Render Data ---
-        arabicText.textContent = arabicData.text;
-        bengaliText.textContent = bengaliData.text;
-        englishText.textContent = englishData.text;
-        
-        // Surah details retrieved from the Arabic object metadata
-        reference.textContent = `— Surah ${arabicData.surah.englishName} (${arabicData.surah.number}:${arabicData.numberInSurah})`;
+        // Extract edition arrays
+        const arabicAyahs = json.data[0].ayahs;  // Array of all Arabic verses
+        const englishAyahs = json.data[1].ayahs; // Array of all English verses
+        const bengaliAyahs = json.data[2].ayahs; // Array of all Bengali verses
 
-        // Clear loading text & unhide container
+        // Update Title
+        const surahName = json.data[0].englishName;
+        surahTitle.textContent = `Surah ${surahName} (${json.data[0].numberOfAyahs} Verses)`;
+
+        // --- Loop through each Ayah and build HTML ---
+        arabicAyahs.forEach((arabicItem, index) => {
+            const ayahCard = document.createElement("div");
+            ayahCard.className = "ayah-card";
+
+            ayahCard.innerHTML = `
+                <span class="ayah-num">${arabicItem.numberInSurah}</span>
+                <p class="arabic" dir="rtl">${arabicItem.text}</p>
+                <p class="bengali">${bengaliAyahs[index].text}</p>
+                <p class="english">${englishAyahs[index].text}</p>
+            `;
+
+            surahContainer.appendChild(ayahCard);
+        });
+
         statusMsg.textContent = "";
-        ayahContainer.classList.remove("hidden");
 
     } catch (error) {
-        // --- UI State: Error Handling ---
-        statusMsg.textContent = "Unable to load Ayah. Please check your internet connection.";
+        statusMsg.textContent = "Failed to load Surah. Please try again.";
         statusMsg.classList.add("error");
-        console.error("Fetch Error:", error.message);
+        console.error("Error fetching Surah:", error.message);
 
     } finally {
-        // Always re-enable button whether fetch succeeded or failed
         fetchBtn.disabled = false;
     }
 }
 
-// 4. Attach Click Event
-fetchBtn.addEventListener("click", getRandomAyah);
+// Attach Event Listeners
+fetchBtn.addEventListener("click", getFullSurah);
 
-// 5. Initial fetch when the page loads
-getRandomAyah();
+// Automatically load default selected Surah on startup
+getFullSurah();
