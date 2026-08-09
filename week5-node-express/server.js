@@ -2,31 +2,23 @@ const express = require('express');
 const app = express();
 const db = require('./database.js');
 
-// Middleware to parse incoming JSON request bodies
 app.use(express.json());
 
-// 1. GET /api/users - Fetch all users from SQLite database
+// ===== USER ROUTES =====
+
 app.get('/api/users', (req, res) => {
   const users = db.prepare('SELECT * FROM users').all();
   res.json(users);
 });
 
-// 2. POST /api/users - Create a new user in SQLite database
 app.post('/api/users', (req, res) => {
   const { name, email } = req.body;
-
-  // Prepare SQL statement with '?' placeholders to prevent SQL Injection
   const stmt = db.prepare('INSERT INTO users (name, email) VALUES (?, ?)');
   const result = stmt.run(name, email);
-
-  // Fetch the newly inserted row using its auto-generated ID
   const newUser = db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
-
-  // Return HTTP status 201 (Created) with the new user object
   res.status(201).json(newUser);
 });
 
-// 3. PUT /api/users/:id - Update user details by ID
 app.put('/api/users/:id', (req, res) => {
   const userId = req.params.id;
   const { name, email } = req.body;
@@ -49,10 +41,8 @@ app.put('/api/users/:id', (req, res) => {
   });
 });
 
-// 4. DELETE /api/users/:id - Delete user by ID
 app.delete('/api/users/:id', (req, res) => {
   const userId = req.params.id;
-
   const stmt = db.prepare('DELETE FROM users WHERE id = ?');
   const result = stmt.run(userId);
 
@@ -63,4 +53,30 @@ app.delete('/api/users/:id', (req, res) => {
   res.status(200).json({ message: `User with id ${userId} deleted successfully` });
 });
 
-app.listen(3000, () => console.log('Server listening on port 3000'));
+// ===== POST ROUTES (nested under users) =====
+
+app.post('/api/users/:userId/posts', (req, res) => {
+  const userId = Number(req.params.userId);
+  const { title, content } = req.body;
+
+  const user = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const stmt = db.prepare('INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)');
+  const result = stmt.run(title, content, userId);
+
+  const newPost = db.prepare('SELECT * FROM posts WHERE id = ?').get(result.lastInsertRowid);
+  res.status(201).json(newPost);
+});
+
+app.get('/api/users/:userId/posts', (req, res) => {
+  const userId = Number(req.params.userId);
+  const posts = db.prepare('SELECT * FROM posts WHERE user_id = ?').all(userId);
+  res.json(posts);
+});
+
+app.listen(3000, () => {
+  console.log("Express server running on port 3000");
+});
