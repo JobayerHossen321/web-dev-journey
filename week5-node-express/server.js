@@ -4,8 +4,6 @@ const db = require('./database.js');
 
 app.use(express.json());
 
-// ===== USER ROUTES =====
-
 app.get('/api/users', (req, res) => {
   const users = db.prepare('SELECT * FROM users').all();
   res.json(users);
@@ -13,6 +11,11 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/users', (req, res) => {
   const { name, email } = req.body;
+
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Name and email are required' });
+  }
+
   const stmt = db.prepare('INSERT INTO users (name, email) VALUES (?, ?)');
   const result = stmt.run(name, email);
   const newUser = db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
@@ -52,8 +55,6 @@ app.delete('/api/users/:id', (req, res) => {
 
   res.status(200).json({ message: `User with id ${userId} deleted successfully` });
 });
-
-// ===== POST ROUTES (nested under users) =====
 
 app.post('/api/users/:userId/posts', (req, res) => {
   const userId = Number(req.params.userId);
