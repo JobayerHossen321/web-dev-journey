@@ -212,6 +212,32 @@ app.get('/api/me', requireAuth, async (req, res, next) => {
 });
 
 // -----------------------------------------------------------------------------
+// POST /api/posts
+// -----------------------------------------------------------------------------
+app.post('/api/posts', requireAuth, async (req, res, next) => {
+  const { title, content } = req.body;
+
+  if (!title || !content) {
+    return res.status(400).json({ error: 'Title and content are required.' });
+  }
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO posts (user_id, title, content) VALUES ($1, $2, $3) RETURNING *',
+      [req.userId, title, content]
+    );
+
+    return res.status(201).json(result.rows[0]);
+  } catch (err) {
+    // Postgres code '23503' == foreign_key_violation
+    if (err.code === '23503') {
+      return res.status(404).json({ error: 'User does not exist.' });
+    }
+    next(err);
+  }
+});
+
+// -----------------------------------------------------------------------------
 // Global Error Handler Middleware
 // -----------------------------------------------------------------------------
 app.use((err, req, res, next) => {
@@ -225,3 +251,4 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
+// this is a comment to check nodeman's work
