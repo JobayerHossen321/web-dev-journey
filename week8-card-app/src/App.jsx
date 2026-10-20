@@ -1,44 +1,38 @@
-import { useState } from "react";
-import { UserCard } from "./UserCard";
+import { useState } from 'react';
+import UserForm from './UserForm';
+import UserCard from './UserCard';
 
-export default function App() {
-  // Initial state array containing user objects
+function App() {
   const [users, setUsers] = useState([
-    { id: 1, name: "Ana", email: "ana@example.com", role: "Developer" },
-    { id: 2, name: "Ben", email: "ben@example.com", role: "Designer" },
+    { id: 1, name: 'Alice Smith', email: 'alice@example.com', role: 'Admin' }
   ]);
 
-  // Add user handler using functional updater (prevUsers) to prevent stale state
-  const handleAddUser = () => {
-    const newUser = {
-      id: Date.now(),
-      name: "Cara",
-      email: "cara@example.com",
-      role: "Product Owner",
-    };
-    setUsers((prevUsers) => [...prevUsers, newUser]);
+  const handleAddUser = (newUser) => {
+    setUsers((prevUsers) => [newUser, ...prevUsers]);
   };
 
-  // Remove user handler using functional updater
-  const handleRemoveUser = (idToRemove) => {
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== idToRemove));
+  const handleRemoveUser = (id) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif", maxWidth: "450px" }}>
-      <h2>Week 8 Card App</h2>
+    <div className="app-container" style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
+      <h1>My Card App</h1>
       
-      {/* Button to append a new user */}
-      <button onClick={handleAddUser} style={{ marginBottom: "16px", padding: "8px 12px" }}>
-        + Add User
-      </button>
+      <UserForm onAddUser={handleAddUser} />
 
-      {/* Render list of UserCards using unique user.id keys */}
-      <div>
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} onRemove={handleRemoveUser} />
-        ))}
+      <h2>User List</h2>
+      <div className="user-list">
+        {users.length === 0 ? (
+          <p>No users added yet.</p>
+        ) : (
+          users.map((user) => (
+            <UserCard key={user.id} user={user} onRemove={handleRemoveUser} />
+          ))
+        )}
       </div>
     </div>
   );
 }
+
+export default App;
