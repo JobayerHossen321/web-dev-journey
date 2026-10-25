@@ -7,7 +7,6 @@ const loadInitialUsers = () => {
     const saved = localStorage.getItem('users');
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Ensure parsed data is a valid array before trusting it
       if (Array.isArray(parsed)) {
         return parsed;
       }
@@ -44,7 +43,7 @@ function App() {
   };
 
   return (
-    <div className="app-container" style={{ padding: "20px" }}>
+    <div className="app-container" style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h1>My Card App</h1>
       <UserForm onAddUser={handleAddUser} />
       
