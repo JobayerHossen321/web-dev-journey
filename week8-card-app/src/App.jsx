@@ -1,64 +1,55 @@
 import { useState, useEffect } from 'react';
 import UserForm from './UserForm';
 import UserCard from './UserCard';
+import PitfallLab from './PitfallLab';
 
-const loadInitialUsers = () => {
-  try {
-    const saved = localStorage.getItem('users');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) {
-        return parsed;
-      }
-    }
-  } catch (error) {
-    console.error("Failed to parse users from localStorage:", error);
-  }
-  return [
-    { id: 1, name: 'Alice Smith', email: 'alice@example.com', role: 'Admin' }
-  ];
-};
-
-function App() {
-  const [users, setUsers] = useState(loadInitialUsers);
-
-  useEffect(() => {
-    document.title = `Users: ${users.length}`;
-  }, [users]);
-
-  useEffect(() => {
+export default function App() {
+  const [users, setUsers] = useState(() => {
     try {
-      localStorage.setItem('users', JSON.stringify(users));
-    } catch (error) {
-      console.error("Failed to save users to localStorage:", error);
+      const saved = localStorage.getItem('users');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load users from localStorage", e);
     }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users));
   }, [users]);
 
-  const handleAddUser = (newUser) => {
-    setUsers((prevUsers) => [newUser, ...prevUsers]);
+  const addUser = (newUser) => {
+    setUsers((prev) => [...prev, newUser]);
   };
 
-  const handleRemoveUser = (id) => {
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+  const removeUser = (id) => {
+    setUsers((prev) => prev.filter((user) => user.id !== id));
   };
 
   return (
-    <div className="app-container" style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
       <h1>My Card App</h1>
-      <UserForm onAddUser={handleAddUser} />
       
-      <h2>User List</h2>
-      <div className="user-list">
-        {users.length > 0 ? (
-          users.map((user) => (
-            <UserCard key={user.id} user={user} onRemove={handleRemoveUser} />
-          ))
+      <UserForm onAddUser={addUser} />
+
+      <div className="user-list" style={{ marginTop: '30px' }}>
+        <h2>User List</h2>
+        {users.length === 0 ? (
+          <p>No users added yet.</p>
         ) : (
-          <p style={{ color: "#666", fontStyle: "italic" }}>No users found. Add one above!</p>
+          users.map((user) => (
+            <UserCard key={user.id} user={user} onRemove={removeUser} />
+          ))
         )}
       </div>
+
+      {/* Pitfall Lab rendered safely below the user list */}
+      <PitfallLab />
     </div>
   );
 }
-
-export default App;
